@@ -1,0 +1,21 @@
+{
+  "name": "ava-tap-json-parser",
+  "version": "1.0.2",
+  "description": "Tap to JSON parser compatible with ava tap output",
+  "main": "index.js",
+  "bin": {
+    "tap-json": "bin/tap-json.js"
+  },
+  "scripts": {},
+  "keywords": [
+    "tap-json",
+    "ava"
+  ],
+  "author": "Harish",
+  "license": "ISC",
+  "dependencies": {
+    "duplexer": "^0.1.1",
+    "tap-parser": "^7.0.0",
+    "through2": "^2.0.3"
+  }
+}
