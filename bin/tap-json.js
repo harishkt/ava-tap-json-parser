@@ -1,7 +1,7 @@
 
 const customParser = require('../index.js');
 
-const jsonParser = customParser(argv);
+const jsonParser = customParser();
 
 
 process.stdin

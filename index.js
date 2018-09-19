@@ -33,7 +33,7 @@ const generateSummary = (results) => {
 	}
 };
 
-const jsonParser = (options = defaults) => {
+const jsonParser = () => {
 	const tapParser = new Parser();
 	const transform = through.obj();
 	const tests = [];
