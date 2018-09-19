@@ -1,10 +1,10 @@
 {
   "name": "ava-tap-json-parser",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "Tap to JSON parser compatible with ava tap output",
   "main": "index.js",
   "bin": {
-    "tap-json": "./bin/tap-json.js"
+    "tap-json": "bin/ava-tap-json-parser"
   },
   "repository": {
     "type": "git",
