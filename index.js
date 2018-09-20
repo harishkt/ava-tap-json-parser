@@ -41,7 +41,7 @@ const jsonParser = () => {
 	tapParser.on('complete', (results) => {
 		const summary = generateSummary(results);
 		const jsonReport = ({ ...summary, tests });
-		transform.push(JSON.stringify(jsonReport));
+		transform.push(`${JSON.stringify(jsonReport)}\n`);
 		transform.emit('end');
 		out.exitCode = results.ok ? 0 : 1;
 	});
