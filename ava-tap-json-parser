@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-const customParser = require('../index.js');
+const customParser = require('./index.js');
 
 const jsonParser = customParser();
 

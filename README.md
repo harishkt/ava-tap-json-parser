@@ -7,6 +7,7 @@ As of now it publishes the report to console.
 ## Installation
 
 npm i -g ava-tap-json-parser
+
 npm i --save-dev ava-tap-json-parser
 
 
