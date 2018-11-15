@@ -40,7 +40,7 @@ const jsonParser = () => {
 	const out = duplexer(tapParser, transform);
 	tapParser.on('complete', (results) => {
 		const summary = generateSummary(results);
-		const jsonReport = Object.assign({}, summary, { tests });
+		const jsonReport = Object.assign({}, { start: new Date() }, summary, { tests });
 		transform.push(`${JSON.stringify(jsonReport)}\n`);
 		transform.emit('end');
 		out.exitCode = results.ok ? 0 : 1;
