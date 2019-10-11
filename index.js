@@ -12,7 +12,19 @@ const beautifyTest = (testInput) => {
 		id,
 		name
 	};
-	if (!ok && !todo) {
+
+	// Skip todos for now
+	if (todo) {
+		return output;
+	}
+
+	if (!ok) {
+		// For now we're using fast-fail so this will appear at times
+		// Let's just skip this for now
+		if (name.includes(' test remaining in ')) {
+			return output;
+		}
+
 		const { diag } = testInput;
 
 		output.stackTrace = {
