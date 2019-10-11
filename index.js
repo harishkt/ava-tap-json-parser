@@ -10,14 +10,21 @@ const beautifyTest = (testInput) => {
 	const output = {
 		status,
 		id,
-		name,
+		name
 	};
 	if (!ok) {
 		output.stackTrace = {
 			errorType: diag.name,
 			errorMessage: diag.message,
-			stackTrace: diag.values
+			stackTrace: {
+				Difference: diag.values['Difference:']
+			}
 		}
+
+		const at = diag.at.match(/\((.*)\)/)[1].split(':');
+		output.path = at[0];
+		output.startLine = at[1];
+		output.endLine = at[2];
 	}
 	return output;
 }
