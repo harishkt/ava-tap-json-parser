@@ -5,14 +5,16 @@ const duplexer = require('duplexer');
 const getStatus = (status) => status ? 'Pass' : 'Fail';
 
 const beautifyTest = (testInput) => {
-	const { ok, id, name, diag } = testInput;
+	const { ok, id, name, todo } = testInput;
 	const status = getStatus(ok); 
 	const output = {
 		status,
 		id,
 		name
 	};
-	if (!ok) {
+	if (!ok && !todo) {
+		const { diag } = testInput;
+
 		output.stackTrace = {
 			errorType: diag.name,
 			errorMessage: diag.message,
