@@ -16,15 +16,16 @@ const beautifyTest = (testInput) => {
 		output.stackTrace = {
 			errorType: diag.name,
 			errorMessage: diag.message,
-			stackTrace: {
-				Difference: diag.values['Difference:']
-			}
+			stackTrace: diag.values
 		}
 
-		const at = diag.at.match(/\((.*)\)/)[1].split(':');
-		output.path = at[0];
-		output.startLine = at[1];
-		output.endLine = at[2];
+		const parts = diag.at.split('\n');
+		const result = parts[parts.length - 1];
+		const [path, startLine, endLine] = result.match(/\((.*)\)/)[1].split(':');
+
+		output.path = path;
+		output.startLine = startLine;
+		output.endLine = endLine;
 
 		output.assertion = diag.assertion;
 
