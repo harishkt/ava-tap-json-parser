@@ -25,6 +25,10 @@ const beautifyTest = (testInput) => {
 		output.path = at[0];
 		output.startLine = at[1];
 		output.endLine = at[2];
+
+		output.assertion = diag.assertion;
+
+		output.raw = testInput;
 	}
 	return output;
 }
