@@ -5,19 +5,45 @@ const duplexer = require('duplexer');
 const getStatus = (status) => status ? 'Pass' : 'Fail';
 
 const beautifyTest = (testInput) => {
-	const { ok, id, name, diag } = testInput;
+	const { ok, id, name, todo } = testInput;
 	const status = getStatus(ok); 
 	const output = {
 		status,
 		id,
-		name,
+		name
 	};
+
+	// Skip todos for now
+	if (todo) {
+		return output;
+	}
+
 	if (!ok) {
+		// For now we're using fast-fail so this will appear at times
+		// Let's just skip this for now
+		if (name.includes(' test remaining in ')) {
+			return output;
+		}
+
+		const { diag } = testInput;
+
 		output.stackTrace = {
 			errorType: diag.name,
 			errorMessage: diag.message,
 			stackTrace: diag.values
 		}
+
+		const parts = diag.at.split('\n');
+		const result = parts[parts.length - 1];
+		const [path, startLine, endLine] = result.match(/\((.*)\)/)[1].split(':');
+
+		output.path = path;
+		output.startLine = startLine;
+		output.endLine = endLine;
+
+		output.assertion = diag.assertion;
+
+		output.raw = testInput;
 	}
 	return output;
 }
